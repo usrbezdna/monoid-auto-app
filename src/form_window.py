@@ -36,7 +36,7 @@ class FormWindow(QMainWindow):
         grid_layout = QGridLayout(self)
         central_widget.setLayout(grid_layout)
 
-        table = create_table(3, 3)
+        table = create_input_table(3, 3)
         self.table = table
 
         btn1, btn2, btn3, btn4, clr_btn, proc_btn = self.create_btns()
@@ -70,29 +70,29 @@ class FormWindow(QMainWindow):
             button.setFont(QFont('Arial', 13))
 
         buttons[0].clicked.connect(
-            lambda: redraw_table(
+            lambda: redraw_input_table(
                 self,
                 self.table.columnCount() + 1,
                 self.table.rowCount()))
         buttons[1].clicked.connect(
-            lambda: redraw_table(
+            lambda: redraw_input_table(
                 self,
                 self.table.columnCount() - 1,
                 self.table.rowCount()))
 
         buttons[2].clicked.connect(
-            lambda: redraw_table(
+            lambda: redraw_input_table(
                 self,
                 self.table.columnCount(),
                 self.table.rowCount() + 1))
         buttons[3].clicked.connect(
-            lambda: redraw_table(
+            lambda: redraw_input_table(
                 self,
                 self.table.columnCount(),
                 self.table.rowCount() - 1))
 
         buttons[4].clicked.connect(lambda: clear_table(self))
-        buttons[5].clicked.connect(lambda: self.monoid_window.show_monoid_window(self))
+        buttons[5].clicked.connect(lambda: self.monoid_window.redraw_monoid_window(self))
 
         return buttons
 
