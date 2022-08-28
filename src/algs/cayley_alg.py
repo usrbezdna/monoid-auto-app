@@ -1,4 +1,4 @@
-def cayley_table(monoid_table: list[tuple[str, list[int]]]) -> list[list[str]] | None:
+def cayley_table(monoid_table: list[tuple[str, list[int]]]) -> list[list[str]]:
     if len(monoid_table) == 0:
         return None
 

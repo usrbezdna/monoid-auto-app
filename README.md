@@ -3,4 +3,4 @@ This repo represents an educational practice in automata theory at Ural Federal 
 
 
 ## Usage
-Just clone this repo and run `$ python run.py`
+Just clone this repo and run `$ python .\src\run.py`

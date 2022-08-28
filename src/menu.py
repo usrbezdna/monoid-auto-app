@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, QRegExp
 from PyQt5.QtGui import *
+from dialog_window import *
 
 
 def setup_menu(window_obj):
@@ -16,6 +17,15 @@ def setup_menu(window_obj):
     menuBar.addAction(feedBack)
 
     window_obj.setMenuBar(menuBar)
+
+    return menuBar
+
+
+def setup_goback_action(window_obj, dialog_window, menuBar):
+    goBack2dialog = QAction("Обратно к выбору режима", window_obj)
+    goBack2dialog.triggered.connect(lambda: go_to_dialog(window_obj, dialog_window))
+    menuBar.addAction(goBack2dialog)
+
 
 def get_info():
     msg_box = QMessageBox()
@@ -46,3 +56,12 @@ def get_feedback():
     msg_box.setIconPixmap(QPixmap('resources\\feedback.png'))
 
     msg_box.exec_()
+
+
+def go_to_dialog(window_obj, dialog_window):
+    window_obj.hide()
+    dialog_window.show()
+    # form_window = FormWindow()
+
+    # ch_window = ModeChooseWindow(form_window)
+    # ch_window.show()

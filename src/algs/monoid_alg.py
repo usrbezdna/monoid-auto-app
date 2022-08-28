@@ -1,4 +1,4 @@
-def monoid_table(symbols_list: list[tuple[str, list[int]]]) -> list[tuple[str, list[int]]] | None:
+def monoid_table(symbols_list: list[tuple[str, list[int]]]) -> list[tuple[str, list[int]]]:
     if len(symbols_list) == 0:
         return None
 

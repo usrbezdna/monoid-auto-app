@@ -12,12 +12,10 @@ def main():
 
     app = QApplication(sys.argv)
 
-    form_window = FormWindow()
-
     # TODO: add basic functionality
     # generate_window = GenerateWindow()
 
-    ch_window = ModeChooseWindow(form_window)
+    ch_window = ModeChooseWindow()
     ch_window.show()
 
     app.exec()

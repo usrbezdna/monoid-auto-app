@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, QRegExp
 from PyQt5.QtGui import *
 from menu import setup_menu
+from dialog_window import *
+from form_window import *
 
 class ChoosingButton(QPushButton):
 
@@ -27,9 +29,10 @@ class ModeChooseWindow(QMainWindow):
     of functionality he is willing to get
     """
 
-    def __init__(self, form_window):
+    def __init__(self):
         super().__init__()
-        self.form_window = form_window
+
+        self.form_window = FormWindow(self)
 
         self.setMinimumSize(QSize(480, 200))
         self.setWindowTitle("Выбор режима работы")
@@ -57,7 +60,7 @@ class ModeChooseWindow(QMainWindow):
         widget.show()
 
     def form_on_clicked(self):
-        self.close()
+        self.hide()
         print("Режим ввода таблицы построения")
         self.form_window.show()
 
