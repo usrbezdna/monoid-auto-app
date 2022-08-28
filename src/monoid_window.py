@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, QRegExp, Qt
 from PyQt5.QtGui import *
 
+from table import read_table_vals
+
 class MonoidWindow(QMainWindow):
 
     def __init__(self):
@@ -32,8 +34,12 @@ class MonoidWindow(QMainWindow):
 
     
     def show_monoid_window(self, form_window):
+
+        res = read_table_vals(form_window)
+        if res is None:
+            return
+
         self.move(form_window.geometry().right() + 10, form_window.geometry().top() + 10)
         self.show()
-
 
         print('Showed', self)
