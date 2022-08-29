@@ -12,9 +12,6 @@ def main():
 
     app = QApplication(sys.argv)
 
-    # TODO: add basic functionality
-    # generate_window = GenerateWindow()
-
     ch_window = ModeChooseWindow()
     ch_window.show()
 

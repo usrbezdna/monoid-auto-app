@@ -4,6 +4,7 @@ from PyQt5.QtCore import QSize, QRegExp
 from PyQt5.QtGui import *
 from menu import setup_menu
 from dialog_window import *
+from generate_window import *
 from form_window import *
 
 class ChoosingButton(QPushButton):
@@ -33,6 +34,7 @@ class ModeChooseWindow(QMainWindow):
         super().__init__()
 
         self.form_window = FormWindow(self)
+        self.generate_window = GenerateWindow(self)
 
         self.setMinimumSize(QSize(480, 200))
         self.setWindowTitle("Выбор режима работы")
@@ -65,7 +67,7 @@ class ModeChooseWindow(QMainWindow):
         self.form_window.show()
 
     def generate_on_clicked(self):
-        self.close()
+        self.hide()
         print("Режим генерации ДКА")
-
+        self.generate_window.show()
     
