@@ -138,7 +138,7 @@ def read_table_vals(self):
             index = model.index(row, column)
 
             value = model.data(index)
-            if value < 0 or value > model.columnCount():
+            if value <= 0 or value > model.columnCount():
                 show_val_warning(value, row, column)
                 return
 
