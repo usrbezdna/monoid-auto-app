@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, QRegExp
 from PyQt5.QtGui import *
 from menu import setup_menu
-from dialog_window import *
 from generate_window import *
 from form_window import *
 
