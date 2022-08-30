@@ -28,8 +28,6 @@ class MonoidWindow(QMainWindow):
         central_widget.setLayout(qhbox_layout)
 
         monoid_table_size = QSize(self.width() / 2, self.height() - 100)
-        cayley_table_size = QSize(self.width() * 2, self.height() - 100)
-
         self.monoid_table = QTableWidget()
 
         self.monoid_table.setMaximumSize(monoid_table_size)
@@ -57,8 +55,6 @@ class MonoidWindow(QMainWindow):
         cayley_data = cayley_table(monoid_data)    
 
         self.move(form_window.geometry().right() + 10, form_window.geometry().top() + 10)
-
-        print(cayley_table(monoid_data))
 
         fill_monoid_table(self.monoid_table, monoid_data)
         fill_cayley_table(self.cayley_table, cayley_data, monoid_data)
