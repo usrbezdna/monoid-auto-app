@@ -1,3 +1,4 @@
+from algs import generate_alg, pdf_alg
 import sys
 import threading
 from queue import Queue
@@ -10,7 +11,7 @@ from PyQt5.QtWidgets import (QGridLayout, QLabel, QLineEdit, QMainWindow,
                              QMessageBox, QPushButton, QWidget)
 
 sys.path.insert(0, 'src/algs')
-from algs import generate_alg, pdf_alg
+
 
 class GenerateWindow(QMainWindow):
     def __init__(self, dialog_window):
@@ -38,12 +39,16 @@ class GenerateWindow(QMainWindow):
                                           '2[5-9]|30', 'от 25 до 30', 0)
         nodes_line = self.current_line('Введите количество вершин:',
                                        '3|4', '3 или 4', 1)
-        symbols_line = self.current_line('Введите количество символов в алфавите:',
-                                         '2|3', '2 или 3', 2)
+        symbols_line = self.current_line(
+            'Введите количество символов в алфавите:', '2|3', '2 или 3', 2)
 
         ok_button = QPushButton('OK', self)
         ok_button.setFont(QFont('Arial', 13))
-        ok_button.clicked.connect(lambda: self.get_files(variants_line, nodes_line, symbols_line))
+        ok_button.clicked.connect(
+            lambda: self.get_files(
+                variants_line,
+                nodes_line,
+                symbols_line))
 
         self.grid_layout.addWidget(ok_button, 3, 1)
 
@@ -72,14 +77,17 @@ class GenerateWindow(QMainWindow):
                              'resources\\warning.png')
         else:
 
-            
-            self.get_msg_box('Запущен процесс генерации таблиц, дождитесь его окончания', 'resources\\info2.png')
+            self.get_msg_box(
+                'Запущен процесс генерации таблиц, дождитесь его окончания',
+                'resources\\info2.png')
 
             queue = Queue()
-            
-
-            th = threading.Thread (target=generate_alg.generate, args=(int(variants_number.text()), 
-                int(nodes_number.text()), int(symbols_number.text()), queue))
+            th = threading.Thread(
+                target=generate_alg.generate, args=(
+                    int(
+                        variants_number.text()), int(
+                        nodes_number.text()), int(
+                        symbols_number.text()), queue))
 
             th.start()
             th.join()
@@ -88,15 +96,28 @@ class GenerateWindow(QMainWindow):
             monoid_tables = queue.get()
             cayley_tables = queue.get()
 
-            t1 = threading.Thread(target=pdf_alg.pdf4_start_tables, args = (start_tables))
-            # t2 = threading.Thread for monoid and cayley tables
-            t1.start()
+            thread_list = []
+            thread_list.append(threading.Thread(target=pdf_alg.pdf4_tables, args=(
+                'gen_files/start_tables', 'Variants', int(nodes_number.text()), *start_tables)))
+            thread_list.append(threading.Thread(target=pdf_alg.pdf4_tables, args=(
+                'gen_files/monoid_tables', 'Monoid Tables', int(nodes_number.text()), *monoid_tables)))
+            thread_list.append(
+                threading.Thread(
+                    target=pdf_alg.pdf4_cayley,
+                    args=(
+                        'gen_files/cayley_tables',
+                        *cayley_tables)))
 
+            for th in thread_list:
+                th.start()
 
-            self.get_msg_box('Файлы вариантов таблиц переходов ДКА и ответы на них созданы!' + 
-            ' Их можно найти в директории gen_files, где располагаются файлы программы. ', 
-                             'resources\\info2.png')
-            
+            for th in thread_list:
+                th.join()
+
+            self.get_msg_box(
+                'Файлы вариантов таблиц переходов ДКА и ответы на них созданы!' +
+                ' Их можно найти в директории gen_files, где располагаются файлы программы. ',
+                'resources\\info2.png')
 
     def get_msg_box(self, text, pixmap_path):
         msg_box = QMessageBox(self)
