@@ -32,7 +32,7 @@ class MonoidWindow(QMainWindow):
         qvbox_layout = QVBoxLayout()
         central_widget.setLayout(qvbox_layout)
 
-        monoid_table_size = QSize(self.width() / 2, self.height() - 100)
+        monoid_table_size = QSize(round(self.width() / 2), self.height() - 100)
         self.monoid_table = QTableWidget()
 
         self.monoid_table.setMaximumSize(monoid_table_size)

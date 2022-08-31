@@ -1,8 +1,12 @@
 from copy import deepcopy
 from random import randint
+from sys import path
 
 from cayley_alg import cayley_table
 from monoid_alg import monoid_table
+
+
+path.insert(0, 'src/algs')
 
 
 def generate(variants_number, nodes_number, symbols_number, queue, minimum=5, maximum=8):
