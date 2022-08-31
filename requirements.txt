@@ -1,1 +1,2 @@
 PyQt5>=5
+pylatex>=1.4.1
