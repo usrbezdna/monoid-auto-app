@@ -1,6 +1,6 @@
 # monoid-auto-app
-This repo represents an educational practice in automata theory at Ural Federal University 
+Данный репозиторий представляет собой учебную практику по теории автоматов в Уральском федеральном университете
 
 
-## Usage
-Just clone this repo and run `$ python .\src\run.py`
+## Использование
+Запуск `$ python .\src\run.py`
