@@ -21,7 +21,7 @@ class GenerateWindow(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
-        self.setFixedSize(QSize(500, 200))
+        self.setFixedSize(QSize(600, 200))
         self.setWindowTitle('Окно генерации таблиц переходов ДКА')
         self.setWindowIcon(QIcon('resources\\choose.png'))
 
