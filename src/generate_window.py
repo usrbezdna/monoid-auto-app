@@ -31,7 +31,7 @@ class GenerateWindow(QMainWindow):
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
 
-        self.grid_layout = QGridLayout(self)
+        self.grid_layout = QGridLayout()
         central_widget.setLayout(self.grid_layout)
         self.grid_layout.setSpacing(5)
 

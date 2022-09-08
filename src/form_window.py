@@ -33,7 +33,7 @@ class FormWindow(QMainWindow):
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
 
-        grid_layout = QGridLayout(self)
+        grid_layout = QGridLayout()
         central_widget.setLayout(grid_layout)
 
         table = create_input_table(3, 3)

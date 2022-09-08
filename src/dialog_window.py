@@ -62,11 +62,9 @@ class ModeChooseWindow(QMainWindow):
 
     def form_on_clicked(self):
         self.hide()
-        print("Режим ввода таблицы построения")
         self.form_window.show()
 
     def generate_on_clicked(self):
         self.hide()
-        print("Режим генерации ДКА")
         self.generate_window.show()
     
