@@ -35,12 +35,12 @@ class GenerateWindow(QMainWindow):
         central_widget.setLayout(self.grid_layout)
         self.grid_layout.setSpacing(5)
 
-        variants_line = self.current_line('Введите количество вариантов:',
-                                          '2[5-9]|30', 'от 25 до 30', 0)
-        nodes_line = self.current_line('Введите количество вершин:',
+        variants_line = self.current_line('Введите количество вариантов (1-30):',
+                                          '([1-9]|[1-2][0-9]|30)', 'от 1 до 30', 0)
+        nodes_line = self.current_line('Введите количество вершин (3 или 4):',
                                        '3|4', '3 или 4', 1)
         symbols_line = self.current_line(
-            'Введите количество символов в алфавите:', '2|3', '2 или 3', 2)
+            'Введите количество символов в алфавите (2 или 3):', '2|3', '2 или 3', 2)
 
         ok_button = QPushButton('OK', self)
         ok_button.setFont(QFont('Arial', 13))
@@ -72,7 +72,7 @@ class GenerateWindow(QMainWindow):
                 symbols_number.text() == ''):
             self.get_msg_box('Одно или несколько полей ещё не заполнены!',
                              'resources\\warning.png')
-        elif match('2[5-9]|30', variants_number.text()) is None:
+        elif match('([1-9]|[1-2][0-9]|30)', variants_number.text()) is None:
             self.get_msg_box('Неверное значение в первом поле!',
                              'resources\\warning.png')
         else:
